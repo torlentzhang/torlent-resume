@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', 'PingFang SC', system-ui, sans-serif;
+  background-color: #f5f5f5;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background-color: white !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .min-h-screen {
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+
+  .space-y-12 {
+    gap: 0 !important;
+  }
+
+  .space-y-12 > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .px-4 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .resume-page {
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    break-after: page !important;
+    break-inside: avoid !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .resume-page:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  .education-item,
+  .advantage-item,
+  .work-experience-item,
+  .project-item,
+  .open-source-item {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+  }
+
+  .section-block {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
