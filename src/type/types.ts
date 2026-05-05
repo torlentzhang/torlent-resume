@@ -42,24 +42,29 @@ export interface OpenSourceProject {
   contributions: string[];
 }
 
+export interface PersonalInfo {
+  name: string;
+  title: string;
+  avatar: string;
+  birthDate: string;
+  workYears: string;
+  education: string;
+  phone: string;
+  wechat: string;
+  email: string;
+  availableDate: string;
+}
+
+export interface PersonalSkills {
+  frontend: string[];
+  frameworks: string[];
+  engineering: string[];
+  other: string[];
+}
+
 export interface ResumeData {
-  personalInfo: {
-    name: string;
-    title: string;
-    avatar: string;
-    birthDate: string;
-    workYears: string;
-    education: string;
-    maritalStatus: string;
-    expectedSalary: string;
-    availableDate: string;
-  };
-  skills: {
-    frontend: string[];
-    frameworks: string[];
-    engineering: string[];
-    other: string[];
-  };
+  personalInfo: PersonalInfo;
+  personalSkills: PersonalSkills;
   languages: Language[];
   education: Education[];
   advantages: string[];

@@ -22,12 +22,16 @@ import { resumeData } from '../../data'
         <span class="text-gray-700">{{ resumeData.personalInfo.education }}</span>
       </div>
       <div class="flex">
-        <span class="text-gray-500 w-20">婚姻状况</span>
-        <span class="text-gray-700">{{ resumeData.personalInfo.maritalStatus }}</span>
+        <span class="text-gray-500 w-20">电话</span>
+        <span class="text-gray-700">{{ resumeData.personalInfo.phone }}</span>
       </div>
       <div class="flex">
-        <span class="text-gray-500 w-20">期望薪资</span>
-        <span class="text-gray-700">{{ resumeData.personalInfo.expectedSalary }}</span>
+        <span class="text-gray-500 w-20">微信</span>
+        <span class="text-gray-700">{{ resumeData.personalInfo.wechat }}</span>
+      </div>
+      <div class="flex">
+        <span class="text-gray-500 w-20">邮箱</span>
+        <span class="text-gray-700">{{ resumeData.personalInfo.email }}</span>
       </div>
       <div class="flex">
         <span class="text-gray-500 w-20">到岗时间</span>
