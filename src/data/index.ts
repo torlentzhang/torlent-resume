@@ -1,6 +1,6 @@
 import type { ResumeData } from "@/type/types";
 import { personalInfo } from "./personal-info";
-import { skills } from "./personal-skills";
+import { personalSkills } from "./personal-skills";
 import { languages } from "./languages";
 import { education } from "./education";
 import { advantages } from "./advantages";
@@ -10,7 +10,7 @@ import { openSource } from "./open-source";
 
 export const resumeData: ResumeData = {
   personalInfo,
-  skills,
+  personalSkills,
   languages,
   education,
   advantages,
@@ -20,7 +20,7 @@ export const resumeData: ResumeData = {
 };
 
 export { personalInfo } from "./personal-info";
-export { skills } from "./personal-skills";
+export { personalSkills } from "./personal-skills";
 export { languages } from "./languages";
 export { education } from "./education";
 export { advantages } from "./advantages";

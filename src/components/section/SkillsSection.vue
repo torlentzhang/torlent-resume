@@ -12,7 +12,7 @@ import { resumeData } from '../../data';
       <div>
         <h3 class="text-sm font-medium text-blue-600 mb-2">前端基础</h3>
         <div class="flex flex-wrap gap-1">
-          <span v-for="skill in resumeData.skills.frontend" :key="skill" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors">
+          <span v-for="skill in resumeData.personalSkills.frontend" :key="skill" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors">
             {{ skill }}
           </span>
         </div>
@@ -20,7 +20,7 @@ import { resumeData } from '../../data';
       <div>
         <h3 class="text-sm font-medium text-blue-600 mb-2">框架与库</h3>
         <div class="flex flex-wrap gap-1">
-          <span v-for="skill in resumeData.skills.frameworks" :key="skill" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors">
+          <span v-for="skill in resumeData.personalSkills.frameworks" :key="skill" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors">
             {{ skill }}
           </span>
         </div>
@@ -28,7 +28,7 @@ import { resumeData } from '../../data';
       <div>
         <h3 class="text-sm font-medium text-blue-600 mb-2">工程化</h3>
         <div class="flex flex-wrap gap-1">
-          <span v-for="skill in resumeData.skills.engineering" :key="skill" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors">
+          <span v-for="skill in resumeData.personalSkills.engineering" :key="skill" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors">
             {{ skill }}
           </span>
         </div>
@@ -36,7 +36,7 @@ import { resumeData } from '../../data';
       <div>
         <h3 class="text-sm font-medium text-blue-600 mb-2">其他</h3>
         <div class="flex flex-wrap gap-1">
-          <span v-for="skill in resumeData.skills.other" :key="skill" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors">
+          <span v-for="skill in resumeData.personalSkills.other" :key="skill" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors">
             {{ skill }}
           </span>
         </div>
