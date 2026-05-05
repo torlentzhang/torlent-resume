@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { resumeData } from '../../data/resume-data'
+import { resumeData } from '../../data'
 </script>
 
 <template>
