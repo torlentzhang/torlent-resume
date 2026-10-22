@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { resumeData } from "@/data";
 import ResumeSheet from "@/components/page/ResumeSheet.vue";
+import resumeImg from "@/mydata/简历照片.jpg";
 </script>
 
 <template>
@@ -14,7 +15,7 @@ import ResumeSheet from "@/components/page/ResumeSheet.vue";
             class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-blue-500 mb-3"
           >
             <img
-              :src="resumeData.personalInfo.avatar"
+              :src="resumeImg"
               alt="个人照片"
               class="w-full h-full object-cover"
               onerror="

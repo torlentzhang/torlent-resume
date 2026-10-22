@@ -1,14 +1,18 @@
 import type { PersonalInfo } from "@/type/types";
 
+/**
+ * 占位/演示数据。
+ * 真实简历数据放在 src/mydata/ 并已加入 .gitignore，通过 VITE_USE_REAL_DATA 切换。
+ */
 export const personalInfo: PersonalInfo = {
-  name: "张一博",
-  title: "前端开发工程师",
+  name: "张三",
+  title: "高级前端开发工程师",
   avatar: "/证件照.png",
-  birthDate: "2003年",
-  workYears: "两年",
-  education: "本科",
-  phone: "18567869878",
-  wechat: "18567869878",
-  email: "1677077188@qq.com",
+  birthDate: "1995年06月",
+  workYears: "7年",
+  education: "硕士",
+  phone: "138-0000-0000",
+  wechat: "zhangsan888",
+  email: "zhangsan@example.com",
   availableDate: "1个月内",
 };
