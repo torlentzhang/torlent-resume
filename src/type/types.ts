@@ -31,6 +31,20 @@ export interface Project {
   achievements: string[];
 }
 
+/** 个人项目（暂未接入简历，见 src/mydata/personal-projects.ts） */
+export interface PersonalProject {
+  name: string;
+  period?: string;
+  status: string;
+  tags: string[];
+  description: string;
+  accessModel: string[];
+  terminals: { name: string; items: string[] }[];
+  architecture: { layer: string; detail: string }[];
+  techStack: string[];
+  highlights: string[];
+}
+
 export interface OpenSourceProject {
   name: string;
   githubUrl: string;

@@ -18,8 +18,9 @@ import type {
 
 type Modules = Record<string, Record<string, unknown>>
 
+// personal-projects.ts 是尚未接入简历的个人项目数据，不参与打包。
 const modules = import.meta.glob<Record<string, unknown>>(
-  ['./*.ts', '!./index.ts'],
+  ['./*.ts', '!./index.ts', '!./personal-projects.ts'],
   { eager: true },
 ) as Modules
 
