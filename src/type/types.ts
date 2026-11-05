@@ -60,11 +60,10 @@ export interface PersonalInfo {
   name: string;
   title: string;
   avatar: string;
-  birthDate: string;
+  age: string;
   workYears: string;
   education: string;
   phone: string;
-  wechat: string;
   email: string;
   availableDate: string;
 }

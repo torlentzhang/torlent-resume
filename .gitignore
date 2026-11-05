@@ -20,6 +20,9 @@ src/mydata/*
 # 本地环境变量（用于开启真实数据）
 .env.local
 
+# 本地备份（含真实简历数据与隐私信息，不上传）
+backup/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

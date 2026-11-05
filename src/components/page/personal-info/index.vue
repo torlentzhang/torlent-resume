@@ -40,9 +40,9 @@ import resumeImg from "@/mydata/简历照片.jpg";
           </h2>
           <div class="resume-lines text-sm">
             <div class="flex">
-              <span class="text-gray-500 w-20">出生日期</span>
+              <span class="text-gray-500 w-20">年龄</span>
               <span class="text-gray-700">{{
-                resumeData.personalInfo.birthDate
+                resumeData.personalInfo.age
               }}</span>
             </div>
             <div class="flex">
@@ -61,12 +61,6 @@ import resumeImg from "@/mydata/简历照片.jpg";
               <span class="text-gray-500 w-20">电话</span>
               <span class="text-gray-700">{{
                 resumeData.personalInfo.phone
-              }}</span>
-            </div>
-            <div class="flex">
-              <span class="text-gray-500 w-20">微信</span>
-              <span class="text-gray-700">{{
-                resumeData.personalInfo.wechat
               }}</span>
             </div>
             <div class="flex">
