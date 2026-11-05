@@ -1,5 +1,9 @@
 import type { Language } from "@/type/types";
 
+/**
+ * 占位/演示数据。
+ * 真实简历数据放在 src/mydata/ 并已加入 .gitignore，通过 VITE_USE_REAL_DATA 切换。
+ */
 export const languages: Language[] = [
   {
     name: "英语",

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ResumePage1 from './components/page/ResumePage1.vue'
-import ResumePage2 from './components/page/ResumePage2.vue'
-import ResumePage3 from './components/page/ResumePage3.vue'
+import PersonalInfoPage from './components/page/personal-info/index.vue'
+import ProjectExperiencePage from './components/page/project-experience/index.vue'
+
+// 个人项目页：内容补齐后取消下一行导入与模板中的注释
+// import PersonalProjectsPage from './components/page/personal-projects/index.vue'
 
 const isExporting = ref(false)
 
@@ -27,10 +29,37 @@ function exportToPdf() {
       </button>
     </div>
 
-    <div class="space-y-12 px-4">
-      <ResumePage1 />
-      <ResumePage2 />
-      <ResumePage3 />
+    <div class="resume-list px-4">
+      <PersonalInfoPage />
+      <ProjectExperiencePage :start="0" :end="2" />
+      <ProjectExperiencePage :start="2" :end="3" title="项目经历（续）" />
+      <!-- 个人项目页：内容补齐后取消注释 -->
+      <!-- <PersonalProjectsPage /> -->
     </div>
   </div>
 </template>
+
+<style scoped>
+/* 屏幕上的页面堆叠间距；打印时归零，避免插入空白页 */
+.resume-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+@media print {
+  .resume-list {
+    gap: 0;
+    padding: 0;
+  }
+
+  .min-h-screen {
+    min-height: auto;
+    padding: 0;
+  }
+
+  .no-print {
+    display: none;
+  }
+}
+</style>
