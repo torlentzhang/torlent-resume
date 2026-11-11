@@ -35,7 +35,6 @@ function exportToPdf() {
       >
         {{ isExporting ? '导出中...' : '导出 PDF' }}
       </button>
-      <span class="text-xs text-gray-500">打印时关闭「页眉和页脚」选项</span>
     </div>
 
     <div class="resume-list px-4">

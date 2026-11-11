@@ -103,13 +103,18 @@ const metaRows = [
   color: #666;
 }
 
-/* 右列：3 行 × 2 列，行高均分，与左列同高 */
+/*
+ * 右列：3 行 × 2 列内容栅格。
+ * 行高必须是 auto（不能是 1fr）：行被拉高后，文字仍贴在行顶部，
+ * 而下边框在行底部，就会呈现「文字不在线上」的错位。
+ * 高度由内容决定，整列用 align-content: center 在左列的高度里居中。
+ */
 .classic-profile__meta {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: minmax(0, 1fr);
+  grid-auto-rows: auto;
+  align-content: center;
   column-gap: 22px;
-  align-content: stretch;
 }
 
 .classic-contact-row {
