@@ -12,7 +12,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex items-baseline justify-between gap-4">
+  <div class="classic-entry-head flex items-baseline justify-between gap-4">
     <div class="min-w-0">
       <span class="text-xs font-bold text-gray-900">{{ title }}</span>
       <span v-if="subtitle" class="ml-2 text-xs font-medium text-gray-600">{{ subtitle }}</span>

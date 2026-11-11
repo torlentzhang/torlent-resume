@@ -214,8 +214,21 @@ const { personalInfo, advantages, workExperience, projects, openSource, educatio
     break-inside: avoid;
   }
 
-  /* 单个条目、单条 bullet 不跨页 */
-  .classic-entry,
+  /*
+   * 条目允许在 bullet 之间断开：一个项目/经历常占半页以上，
+   * 整条不可分割会把大段内容推到下一页，造成成片空白。
+   * 条目头仍然 keep-with-next，保证跨页后页面顶部的第一条 bullet 不孤悬。
+   */
+  .classic-entry {
+    break-inside: auto;
+  }
+
+  .classic-entry-head {
+    break-after: avoid;
+    break-inside: avoid;
+  }
+
+  /* 单条 bullet 不跨页 */
   .classic-bullet {
     break-inside: avoid;
   }

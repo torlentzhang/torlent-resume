@@ -15,7 +15,7 @@ const tagLine = [...(props.tags ?? []), ...(props.techStack ?? [])].join(' / ')
 </script>
 
 <template>
-  <div>
+  <div class="classic-entry-head">
     <div class="flex items-baseline justify-between gap-4">
       <component
         :is="href ? 'a' : 'span'"
