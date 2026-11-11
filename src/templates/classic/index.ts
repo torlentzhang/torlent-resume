@@ -1,11 +1,11 @@
 import type { ResumeTemplate } from '@/types'
-import ClassicPage from './pages/page-1.vue'
+import ClassicDocument from './ClassicDocument.vue'
 
 const classicTemplate: ResumeTemplate = {
   id: 'classic',
   name: '经典单栏',
-  description: '单栏黑白灰，单页版式',
-  pages: [ClassicPage],
+  description: '单栏黑白灰，分页交给浏览器原生分页',
+  flow: ClassicDocument,
 }
 
 export default classicTemplate

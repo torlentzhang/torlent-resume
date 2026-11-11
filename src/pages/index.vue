@@ -59,7 +59,12 @@ function exportToPdf() {
 }
 
 @media print {
+  /*
+   * 打印态必须退出 flex：flex 容器跨页在 Chrome 里会产生空白页。
+   * classic 是单条连续流，靠浏览器原生分页，容器只需交还文档流。
+   */
   .resume-list {
+    display: block;
     gap: 0;
     padding: 0;
   }
