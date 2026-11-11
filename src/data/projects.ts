@@ -1,4 +1,4 @@
-import type { Project } from "@/type/types";
+import type { Project } from "@/types";
 
 /**
  * 占位/演示数据。

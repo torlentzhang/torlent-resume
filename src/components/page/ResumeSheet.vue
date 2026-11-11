@@ -50,9 +50,9 @@ onBeforeUnmount(() => {
 <style scoped>
 /* 单页固定尺寸：允许内容被裁切，页数恒等于组件数量 */
 .resume-page {
-  width: var(--resume-page-width);
-  height: var(--resume-page-height);
-  padding: var(--resume-page-padding);
+  width: var(--a4-width);
+  height: var(--a4-height);
+  padding: var(--a4-padding);
   box-sizing: border-box;
 
   /* 单页骨架：标题行自动高度，正文占满剩余行 */
@@ -85,9 +85,9 @@ onBeforeUnmount(() => {
 /* 打印：固定纸张尺寸，一页一张，禁止被内容撑高 */
 @media print {
   .resume-page {
-    width: var(--resume-page-width) !important;
-    height: var(--resume-page-height) !important;
-    padding: var(--resume-page-padding) !important;
+    width: var(--a4-width) !important;
+    height: var(--a4-height) !important;
+    padding: var(--a4-padding) !important;
     box-sizing: border-box !important;
     min-height: 0 !important;
     overflow: hidden !important;

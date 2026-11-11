@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/type/types";
+import type { ResumeData } from "@/types";
 
 /*
  * 数据入口。

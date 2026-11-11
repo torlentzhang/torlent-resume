@@ -1,4 +1,4 @@
-import type { Language } from "@/type/types";
+import type { Language } from "@/types";
 
 /**
  * 占位/演示数据。

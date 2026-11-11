@@ -32,7 +32,8 @@ src/
 │       └── OpenSourceSection.vue   # 开源项目
 ├── data/                # 数据目录
 │   └── resume-data.ts   # 简历数据配置
-├── style.css            # 全局样式
+├── style/
+│   └── style.scss       # 全局样式入口（含 :root 纸张变量）
 ├── App.vue              # 根组件
 └── main.ts              # 入口文件
 ```
@@ -99,12 +100,12 @@ VITE_USE_REAL_DATA=true
 
 ### 调整纸张尺寸
 
-所有页面共用一套尺寸变量，定义在 `src/style.css` 的 `:root` 中：
+所有页面共用一套尺寸变量，直接定义在 `src/style/style.scss` 的 `:root` 中：
 
 ```css
---resume-page-width: 210mm;
---resume-page-height: 297mm;
---resume-page-padding: 12mm 16mm;
+--a4-width: 210mm;
+--a4-height: 297mm;
+--a4-padding: 12mm 16mm;
 ```
 
 修改后屏幕预览与 PDF 导出会同步变化。注意 `@page { size: A4 }` 无法使用 CSS 变量，若改成非 A4 纸张需同步修改该处。
@@ -129,7 +130,7 @@ VITE_USE_REAL_DATA=true
 
 ### 样式放置约定
 
-`src/style.css` 只保留**全局设计令牌与基础设置**（`:root` 变量、根字号锁定、`@page`、打印背景色）。
+`src/style/` 只保留**全局设计令牌与基础设置**（`:root` 变量、根字号锁定、`@page`、打印背景色），其中纸张变量直接写在 `style.scss` 的 `:root` 中。
 
 组件的布局与样式写在各自 `.vue` 的 `<style scoped>` 中：
 

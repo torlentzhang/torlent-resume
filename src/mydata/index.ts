@@ -14,7 +14,7 @@ import type {
   PersonalSkills,
   Project,
   WorkExperience,
-} from '@/type/types'
+} from '@/types'
 
 type Modules = Record<string, Record<string, unknown>>
 

@@ -34,3 +34,6 @@ backup/
 *.sln
 *.sw?
 .trae
+
+# IDE 工具导出的临时分享包
+.trae-html-share-packages/
