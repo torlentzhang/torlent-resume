@@ -1,21 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /*
  * 全局基础设置。
  * 布局、字号等组件相关样式写在各自 .vue 的 <style scoped> 中。
  */
 :root {
-  /* 纸张尺寸：三个页面共用，是唯一需要全局统一的值 */
+  /* 纸张尺寸：所有页面共用，是唯一需要全局统一的值 */
   /* 注意：与下方 @page { size: A4 } 保持一致，浏览器不支持在 @page 中使用 var() */
-  --resume-page-width: 210mm;
-  --resume-page-height: 297mm;
-  --resume-page-padding: 12mm 16mm;
+  --a4-width: 210mm;
+  --a4-height: 297mm;
+  --a4-padding: 12mm 16mm;
 }
 
 /*
- * 锁定根字号：Tailwind 的间距工具类（mb-3、gap-2、py-1、w-32…）都以 rem 为单位，
+ * 锁定根字号：工具类（mb-3、gap-2、py-1、w-32…）都以 rem 为单位，
  * 会跟随浏览器默认字号缩放。简历要求像素级稳定，因此把根字号钉死为 16px。
  */
 html {
@@ -28,7 +25,7 @@ body {
 }
 
 @page {
-  /* 必须与 :root 的 --resume-page-width/height 保持一致 */
+  /* 必须与 :root 的 --a4-width/--a4-height 保持一致 */
   size: A4;
   margin: 0;
 }

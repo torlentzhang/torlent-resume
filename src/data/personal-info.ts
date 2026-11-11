@@ -1,4 +1,4 @@
-import type { PersonalInfo } from "@/type/types";
+import type { PersonalInfo } from "@/types";
 
 /**
  * 占位/演示数据。

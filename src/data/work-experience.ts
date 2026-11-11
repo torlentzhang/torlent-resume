@@ -1,4 +1,4 @@
-import type { WorkExperience } from "@/type/types";
+import type { WorkExperience } from "@/types";
 
 /**
  * 占位/演示数据。

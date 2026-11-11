@@ -1,4 +1,4 @@
-import type { Education } from "@/type/types";
+import type { Education } from "@/types";
 
 /**
  * 占位/演示数据。

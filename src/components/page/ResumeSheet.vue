@@ -50,9 +50,9 @@ onBeforeUnmount(() => {
 <style scoped>
 /* 单页固定尺寸：允许内容被裁切，页数恒等于组件数量 */
 .resume-page {
-  width: var(--resume-page-width);
-  height: var(--resume-page-height);
-  padding: var(--resume-page-padding);
+  width: var(--a4-width);
+  height: var(--a4-height);
+  padding: var(--a4-padding);
   box-sizing: border-box;
 
   /* 单页骨架：标题行自动高度，正文占满剩余行 */
@@ -63,16 +63,9 @@ onBeforeUnmount(() => {
 }
 
 /*
- * 字号统一以 px 定义，不随浏览器默认字号缩放，保证版面高度可预测。
- * 用 :deep() 是因为内容来自 <slot>，scoped 选择器默认不会作用到 slotted 内容。
+ * 字号已统一到 uno.config.ts 的 theme.fontSize（text-xs ~ text-3xl），
+ * 纸内纸外同一类名同值，不再需要 :deep() 覆盖。
  */
-.resume-page :deep(.text-3xl)  { font-size: 32px; line-height: 40px; }
-.resume-page :deep(.text-2xl)  { font-size: 26px; line-height: 34px; }
-.resume-page :deep(.text-xl)   { font-size: 22px; line-height: 30px; }
-.resume-page :deep(.text-lg)   { font-size: 20px; line-height: 28px; }
-.resume-page :deep(.text-base) { font-size: 18px; line-height: 26px; }
-.resume-page :deep(.text-sm)   { font-size: 16px; line-height: 23px; }
-.resume-page :deep(.text-xs)   { font-size: 13px; line-height: 18px; }
 
 /* 溢出提示：仅屏幕预览可见，不影响打印产出 */
 @media screen {
@@ -85,9 +78,9 @@ onBeforeUnmount(() => {
 /* 打印：固定纸张尺寸，一页一张，禁止被内容撑高 */
 @media print {
   .resume-page {
-    width: var(--resume-page-width) !important;
-    height: var(--resume-page-height) !important;
-    padding: var(--resume-page-padding) !important;
+    width: var(--a4-width) !important;
+    height: var(--a4-height) !important;
+    padding: var(--a4-padding) !important;
     box-sizing: border-box !important;
     min-height: 0 !important;
     overflow: hidden !important;
