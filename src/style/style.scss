@@ -1,6 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /*
  * 全局基础设置。
@@ -15,7 +12,7 @@
 }
 
 /*
- * 锁定根字号：Tailwind 的间距工具类（mb-3、gap-2、py-1、w-32…）都以 rem 为单位，
+ * 锁定根字号：工具类（mb-3、gap-2、py-1、w-32…）都以 rem 为单位，
  * 会跟随浏览器默认字号缩放。简历要求像素级稳定，因此把根字号钉死为 16px。
  */
 html {
