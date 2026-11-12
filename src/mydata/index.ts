@@ -18,10 +18,9 @@ import type {
 
 type Modules = Record<string, Record<string, unknown>>
 
-const modules = import.meta.glob<Record<string, unknown>>(
-  ['./*.ts', '!./index.ts'],
-  { eager: true },
-) as Modules
+const modules = import.meta.glob<Record<string, unknown>>(['./*.ts', '!./index.ts'], {
+  eager: true,
+}) as Modules
 
 const pick = <T>(file: string, key: string): T | undefined =>
   modules[`./${file}`]?.[key] as T | undefined
@@ -41,10 +40,7 @@ export const realData: {
   languages: pick<Language[]>('languages.ts', 'languages'),
   education: pick<Education[]>('education.ts', 'education'),
   advantages: pick<string[]>('advantages.ts', 'advantages'),
-  workExperience: pick<WorkExperience[]>(
-    'work-experience.ts',
-    'workExperience',
-  ),
+  workExperience: pick<WorkExperience[]>('work-experience.ts', 'workExperience'),
   projects: pick<Project[]>('projects.ts', 'projects'),
   portfolio: pick<PortfolioProject[]>('portfolio.ts', 'portfolio'),
 }

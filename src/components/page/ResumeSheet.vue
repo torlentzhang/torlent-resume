@@ -17,9 +17,7 @@ function checkOverflow() {
   const overflow = el.scrollHeight - el.clientHeight
   if (overflow > 1) {
     el.classList.add('resume-overflow')
-    console.warn(
-      `[ResumeSheet] 内容超出单页 ${overflow}px，超出部分会被裁切，请精简内容或拆页。`,
-    )
+    console.warn(`[ResumeSheet] 内容超出单页 ${overflow}px，超出部分会被裁切，请精简内容或拆页。`)
   } else {
     el.classList.remove('resume-overflow')
   }

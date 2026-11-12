@@ -1,4 +1,4 @@
-import type { PortfolioProject } from "@/types";
+import type { PortfolioProject } from '@/types'
 
 /**
  * 作品集演示数据。
@@ -10,10 +10,9 @@ export const portfolio: PortfolioProject[] = [
     period: `2020.03 - 至今`,
     meta: `1.5K ⭐ | V 3.2.0 | MIT License`,
     url: `https://github.com/zhangsan/form-builder`,
-    description:
-      `FormBuilder是一款高性能、可扩展的可视化表单构建器，支持通过拖拽方式快速生成复杂表单，内置丰富的基础组件和校验规则，支持自定义扩展，可嵌入到各类业务系统中使用。目前已被超过250家公司在生产环境使用。`,
-    tags: ["开源", "GitHub"],
-    techStack: ["Vue 3", "TypeScript", "Vite"],
+    description: `FormBuilder是一款高性能、可扩展的可视化表单构建器，支持通过拖拽方式快速生成复杂表单，内置丰富的基础组件和校验规则，支持自定义扩展，可嵌入到各类业务系统中使用。目前已被超过250家公司在生产环境使用。`,
+    tags: ['开源', 'GitHub'],
+    techStack: ['Vue 3', 'TypeScript', 'Vite'],
     highlights: [
       `可视化拖拽构建，操作简单直观，支持实时预览`,
       `支持五十多种表单组件，满足各类复杂表单需求`,
@@ -35,10 +34,9 @@ export const portfolio: PortfolioProject[] = [
     period: `2021.05 - 至今`,
     meta: `850 ⭐ | V 1.2.0 | MIT License`,
     url: `https://github.com/zhangsan/table-pro`,
-    description:
-      `TablePro是一款高性能、功能丰富的企业级数据表格组件，专为中后台系统设计，内置了排序、筛选、分页、导出、虚拟滚动、编辑等高级功能，开箱即用，同时支持高度自定义，满足各种复杂企业业务场景需求。`,
-    tags: ["开源", "GitHub"],
-    techStack: ["Vue 3", "TypeScript", "Vite"],
+    description: `TablePro是一款高性能、功能丰富的企业级数据表格组件，专为中后台系统设计，内置了排序、筛选、分页、导出、虚拟滚动、编辑等高级功能，开箱即用，同时支持高度自定义，满足各种复杂企业业务场景需求。`,
+    tags: ['开源', 'GitHub'],
+    techStack: ['Vue 3', 'TypeScript', 'Vite'],
     highlights: [
       `可视化拖拽构建，操作简单直观，支持实时预览`,
       `支持五十多种表单组件，满足各类复杂表单需求`,
@@ -60,10 +58,9 @@ export const portfolio: PortfolioProject[] = [
     period: `2019.03 - 至今`,
     meta: `450 ⭐ | V 2.1.0 | MIT License`,
     url: `https://github.com/zhangsan/utils-kit`,
-    description:
-      `UtilsKit是一套现代化的JavaScript工具库，提供了200+常用的工具函数，涵盖了字符串处理、数据校验、对象操作、日期处理、数学运算、校验等常见开发场景，使用TypeScript编写，提供完整的类型定义，支持TreeShaking按需引入。`,
-    tags: ["开源", "GitHub"],
-    techStack: ["TypeScript", "Rollup", "Jest"],
+    description: `UtilsKit是一套现代化的JavaScript工具库，提供了200+常用的工具函数，涵盖了字符串处理、数据校验、对象操作、日期处理、数学运算、校验等常见开发场景，使用TypeScript编写，提供完整的类型定义，支持TreeShaking按需引入。`,
+    tags: ['开源', 'GitHub'],
+    techStack: ['TypeScript', 'Rollup', 'Jest'],
     highlights: [
       `可视化拖拽构建，操作简单直观，支持实时预览`,
       `支持五十多种表单组件，满足各类复杂表单需求`,
@@ -80,4 +77,4 @@ export const portfolio: PortfolioProject[] = [
       `通过Discord、QQ等渠道维护社区，提供线上多个开发资源`,
     ],
   },
-];
+]

@@ -75,7 +75,10 @@ export default defineConfig({
     },
 
     // ---------- 版块 ----------
-    ['section-title', 'pb-[5px] border-b border-rule text-xs font-bold tracking-title text-gray-900 print:break-after-avoid print:break-inside-avoid'],
+    [
+      'section-title',
+      'pb-[5px] border-b border-rule text-xs font-bold tracking-title text-gray-900 print:break-after-avoid print:break-inside-avoid',
+    ],
     ['section-block', 'mt-[22px]'],
 
     // ---------- 条目 ----------

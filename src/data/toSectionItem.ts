@@ -1,10 +1,4 @@
-import type {
-  Education,
-  PortfolioProject,
-  Project,
-  SectionItem,
-  WorkExperience,
-} from '@/types'
+import type { Education, PortfolioProject, Project, SectionItem, WorkExperience } from '@/types'
 
 /**
  * 把各版块的原始数据结构映射为模板统一使用的 SectionItem。
