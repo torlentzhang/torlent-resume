@@ -5,75 +5,56 @@
  * 一个 <A4> 就是一张纸，页数由这里的模板显式决定（手动分页）。
  * 纸张尺寸、内边距、白底、裁切、打印分页都在 A4.vue 内，本组件不管。
  *
- * 版式全部由 uno.config.ts 的 shortcuts 表达，本组件没有 style 块。
+ * 版块标题直接写 <h2 class="section-title">，版块内的条目交给 SectionItem。
+ * 本组件没有 style 块。
  *
  * 这是唯一读取 resumeData 的地方，版块组件只收 props。
  */
 import { resumeData } from '@/data'
+import {
+  educationToItems,
+  workToItems,
+  projectToItems,
+  portfolioToItems,
+} from '@/data/toSectionItem'
 import A4 from '@/components/A4.vue'
-import SectionTitle from './blocks/SectionTitle.vue'
 import Bullet from './blocks/Bullet.vue'
-import EntryHead from './blocks/EntryHead.vue'
-import ProjectHead from './blocks/ProjectHead.vue'
-import ProfileHeader from './blocks/ProfileHeader.vue'
+import Profile from './blocks/Profile.vue'
+import SectionItem from './blocks/SectionItem.vue'
 
-const { personalInfo, advantages, workExperience, projects, portfolio, education, languages } =
+const { personalInfo, advantages, education, workExperience, projects, portfolio, languages } =
   resumeData
+
+// 数据是构建期常量，直接转换，不需要 computed
+const educationItems = educationToItems(education)
+const workItems = workToItems(workExperience)
+const projectItems = projectToItems(projects)
+const portfolioItems = portfolioToItems(portfolio)
 </script>
 
 <template>
   <div class="flex flex-col items-center gap-12 print:gap-0">
     <!-- 第 1 页：个人信息 + 个人优势 + 工作经历 + 教育背景（含语言能力） -->
     <A4>
-      <ProfileHeader :info="personalInfo" />
+      <header>
+        <Profile :info="personalInfo" />
+      </header>
 
       <section v-if="advantages.length" class="section-block">
-        <SectionTitle text="个人优势" />
+        <h2 class="section-title">个人优势</h2>
         <ul class="mt-2 space-y-1">
-          <Bullet v-for="(item, index) in advantages" :key="index" :text="item" />
+          <Bullet v-for="(text, index) in advantages" :key="index" :text="text" />
         </ul>
       </section>
 
-      <section v-if="workExperience.length" class="section-block">
-        <SectionTitle text="工作经历" />
-        <div
-          v-for="(work, index) in workExperience"
-          :key="index"
-          :class="['entry-block', index === 0 ? 'mt-2' : 'mt-3']"
-        >
-          <EntryHead
-            :title="work.company"
-            :subtitle="work.position"
-            :period="work.period"
-            :location="work.location"
-          />
-          <ul v-if="work.responsibilities.length || work.achievements.length" class="mt-1 space-y-1">
-            <Bullet
-              v-for="(item, itemIndex) in [...work.responsibilities, ...work.achievements]"
-              :key="itemIndex"
-              :text="item"
-            />
-          </ul>
-        </div>
+      <section v-if="workItems.length" class="section-block">
+        <h2 class="section-title">工作经历</h2>
+        <SectionItem v-for="item in workItems" :key="item.title" :item="item" />
       </section>
 
-      <section v-if="education.length" class="section-block">
-        <SectionTitle text="教育背景" />
-        <div
-          v-for="(item, index) in education"
-          :key="index"
-          :class="['entry-block', index === 0 ? 'mt-2' : 'mt-3']"
-        >
-          <EntryHead
-            :title="item.school"
-            :subtitle="item.major"
-            :period="item.period"
-            :location="item.location"
-          />
-          <ul v-if="item.highlights.length" class="mt-1 space-y-1">
-            <Bullet v-for="(text, textIndex) in item.highlights" :key="textIndex" :text="text" />
-          </ul>
-        </div>
+      <section v-if="educationItems.length" class="section-block">
+        <h2 class="section-title">教育背景</h2>
+        <SectionItem v-for="item in educationItems" :key="item.title" :item="item" />
         <p
           v-for="(item, index) in languages"
           :key="index"
@@ -87,62 +68,18 @@ const { personalInfo, advantages, workExperience, projects, portfolio, education
 
     <!-- 第 2 页：项目经历 -->
     <A4>
-      <section v-if="projects.length">
-        <SectionTitle text="项目经历" />
-        <div
-          v-for="(project, index) in projects"
-          :key="index"
-          :class="['entry-block', index === 0 ? 'mt-2' : 'mt-3']"
-        >
-          <ProjectHead
-            :name="project.name"
-            :period="project.period"
-            :tags="project.tags"
-            :tech-stack="project.techStack"
-          />
-          <p v-if="project.description" class="bullet mt-1">{{ project.description }}</p>
-          <ul
-            v-if="project.responsibilities.length || project.achievements.length"
-            class="mt-1 space-y-1"
-          >
-            <Bullet
-              v-for="(item, itemIndex) in [...project.responsibilities, ...project.achievements]"
-              :key="itemIndex"
-              :text="item"
-            />
-          </ul>
-        </div>
+      <section v-if="projectItems.length">
+        <h2 class="section-title">项目经历</h2>
+        <SectionItem v-for="item in projectItems" :key="item.title" :item="item" />
       </section>
-
     </A4>
 
     <!-- 第 3 页：作品集 -->
     <A4>
-      <section v-if="portfolio.length">
-        <SectionTitle text="作品集" />
-        <div
-          v-for="(project, index) in portfolio"
-          :key="index"
-          :class="['entry-block', index === 0 ? 'mt-2' : 'mt-3']"
-        >
-          <ProjectHead
-            :name="project.name"
-            :href="project.url"
-            :period="project.period || project.status"
-            :tags="project.tags"
-            :tech-stack="project.techStack"
-          />
-          <p v-if="project.description" class="bullet mt-1">{{ project.description }}</p>
-          <ul v-if="project.highlights.length" class="mt-1 space-y-1">
-            <Bullet
-              v-for="(item, itemIndex) in project.highlights"
-              :key="itemIndex"
-              :text="item"
-            />
-          </ul>
-        </div>
+      <section v-if="portfolioItems.length">
+        <h2 class="section-title">作品集</h2>
+        <SectionItem v-for="item in portfolioItems" :key="item.title" :item="item" />
       </section>
-
     </A4>
   </div>
 </template>

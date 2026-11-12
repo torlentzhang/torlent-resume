@@ -40,8 +40,6 @@ export interface PortfolioProject {
   name: string;
   /** 起止时间；未上线可留空 */
   period?: string;
-  /** 状态标记，如「开发中」；已上线可留空 */
-  status?: string;
   /** 一句话定位，如「Vue 拖拽式表单引擎」 */
   meta?: string;
   /** 仓库地址；私有项目留空 */
@@ -50,6 +48,31 @@ export interface PortfolioProject {
   tags: string[];
   techStack: string[];
   highlights: string[];
+}
+
+/**
+ * 版块内的一个条目（教育 / 工作 / 项目 / 作品集通用）。
+ * 由 src/data/toSectionItem.ts 从各自的原始结构映射而来，模板只认这一种形状。
+ */
+export interface SectionItem {
+  /** 主标题：学校 / 公司 / 项目名 */
+  title: string;
+  /** 副标题：专业 / 职位 */
+  subtitle?: string;
+  /** 起止时间 */
+  period?: string;
+  /** 地点 */
+  location?: string;
+  /** 一段概述（项目 / 作品集用） */
+  description?: string;
+  /** 标签（项目 / 作品集用），渲染在头部第二行 */
+  tags?: string[];
+  /** 技术栈（项目 / 作品集用），与 tags 合并成一行 */
+  techStack?: string[];
+  /** 外部链接（作品集用） */
+  url?: string;
+  /** 所有要点，已由数据层合并完毕 */
+  items: string[];
 }
 
 export interface PersonalInfo {
