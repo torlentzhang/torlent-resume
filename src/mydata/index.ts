@@ -9,20 +9,18 @@
 import type {
   Education,
   Language,
-  OpenSourceProject,
   PersonalInfo,
   PersonalSkills,
+  PortfolioProject,
   Project,
   WorkExperience,
 } from '@/types'
 
 type Modules = Record<string, Record<string, unknown>>
 
-// personal-projects.ts 是尚未接入简历的个人项目数据，不参与打包。
-const modules = import.meta.glob<Record<string, unknown>>(
-  ['./*.ts', '!./index.ts', '!./personal-projects.ts'],
-  { eager: true },
-) as Modules
+const modules = import.meta.glob<Record<string, unknown>>(['./*.ts', '!./index.ts'], {
+  eager: true,
+}) as Modules
 
 const pick = <T>(file: string, key: string): T | undefined =>
   modules[`./${file}`]?.[key] as T | undefined
@@ -35,19 +33,16 @@ export const realData: {
   advantages?: string[]
   workExperience?: WorkExperience[]
   projects?: Project[]
-  openSource?: OpenSourceProject[]
+  portfolio?: PortfolioProject[]
 } = {
   personalInfo: pick<PersonalInfo>('personal-info.ts', 'personalInfo'),
   personalSkills: pick<PersonalSkills>('personal-skills.ts', 'personalSkills'),
   languages: pick<Language[]>('languages.ts', 'languages'),
   education: pick<Education[]>('education.ts', 'education'),
   advantages: pick<string[]>('advantages.ts', 'advantages'),
-  workExperience: pick<WorkExperience[]>(
-    'work-experience.ts',
-    'workExperience',
-  ),
+  workExperience: pick<WorkExperience[]>('work-experience.ts', 'workExperience'),
   projects: pick<Project[]>('projects.ts', 'projects'),
-  openSource: pick<OpenSourceProject[]>('open-source.ts', 'openSource'),
+  portfolio: pick<PortfolioProject[]>('portfolio.ts', 'portfolio'),
 }
 
 /** 是否检测到了完整的真实数据 */

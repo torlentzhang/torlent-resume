@@ -15,9 +15,7 @@ const props = withDefaults(
   { start: 0, end: Number.MAX_SAFE_INTEGER, title: '项目经历' },
 )
 
-const visibleProjects = computed(() =>
-  resumeData.projects.slice(props.start, props.end),
-)
+const visibleProjects = computed(() => resumeData.projects.slice(props.start, props.end))
 </script>
 
 <template>
@@ -29,17 +27,17 @@ const visibleProjects = computed(() =>
 
     <!-- 上下两栏平分，每栏固定放一个项目 -->
     <div class="project-rows">
-      <div
-        v-for="project in visibleProjects"
-        :key="project.name"
-        class="project-item"
-      >
+      <div v-for="project in visibleProjects" :key="project.name" class="project-item">
         <div class="flex justify-between items-start">
           <h2 class="text-base font-medium text-gray-800">{{ project.name }}</h2>
           <span class="text-gray-500 text-sm shrink-0">{{ project.period }}</span>
         </div>
         <div class="flex flex-wrap gap-1.5 mt-2">
-          <span v-for="tech in project.techStack" :key="tech" class="px-2 py-0.5 bg-blue-100 text-blue-600 text-xs rounded">
+          <span
+            v-for="tech in project.techStack"
+            :key="tech"
+            class="px-2 py-0.5 bg-blue-100 text-blue-600 text-xs rounded"
+          >
             {{ tech }}
           </span>
         </div>
@@ -47,7 +45,11 @@ const visibleProjects = computed(() =>
         <div class="mt-3">
           <p class="text-sm font-medium text-gray-700">核心职责：</p>
           <ul class="mt-1">
-            <li v-for="resp in project.responsibilities" :key="resp" class="text-sm text-gray-600 list-disc ml-5">
+            <li
+              v-for="resp in project.responsibilities"
+              :key="resp"
+              class="text-sm text-gray-600 list-disc ml-5"
+            >
               {{ resp }}
             </li>
           </ul>
@@ -55,7 +57,11 @@ const visibleProjects = computed(() =>
         <div class="mt-3">
           <p class="text-sm font-medium text-gray-700">项目成果：</p>
           <ul class="mt-1">
-            <li v-for="achievement in project.achievements" :key="achievement" class="text-sm text-gray-600 list-disc ml-5">
+            <li
+              v-for="achievement in project.achievements"
+              :key="achievement"
+              class="text-sm text-gray-600 list-disc ml-5"
+            >
               {{ achievement }}
             </li>
           </ul>

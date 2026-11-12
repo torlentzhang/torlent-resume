@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  * 单条 bullet。根节点是 li，由父级 ul 提供列表语义。
- * 不带宽高、不带纵向 margin，间距由父级控制。
+ * 项目符号由 uno `bullet` shortcut 的 before: 伪元素生成，打印时不跨页。
  */
 defineProps<{
   text: string
@@ -9,7 +9,7 @@ defineProps<{
 </script>
 
 <template>
-  <li class="classic-bullet">
+  <li class="bullet">
     {{ text }}
   </li>
 </template>

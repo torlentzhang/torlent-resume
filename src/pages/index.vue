@@ -29,9 +29,9 @@ function exportToPdf() {
         </option>
       </select>
       <button
-        @click="exportToPdf"
         :disabled="isExporting"
         class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
+        @click="exportToPdf"
       >
         {{ isExporting ? '导出中...' : '导出 PDF' }}
       </button>

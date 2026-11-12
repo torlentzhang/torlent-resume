@@ -1,0 +1,7 @@
+dist
+node_modules
+package-lock.json
+
+# Markdown 不参与格式化：AGENTS.md 是工作区说明，README/docs 的对齐表格
+# 会被 Prettier 重排，收益低且干扰 diff
+*.md

@@ -1,30 +1,38 @@
-import { defineConfig, presetWind3 } from 'unocss'
+import { defineConfig, presetWind3, transformerDirectives } from 'unocss'
 
 /**
- * UnoCSS 配置。
+ * UnoCSS 配置 —— 本项目样式的唯一入口。
  *
- * 预设选 presetWind3：默认色板、工具类语义、space-y 实现都与 Tailwind 3 一致，
- * 从 Tailwind 3 迁移过来观感零差异。升级到 wind4 需要逐档对齐 OKLCH 色板，留到后续单独做。
- *
- * 纸张尺寸不在本文件写字面量：`a4` 系列键映射到 style.scss 里 :root 的 --a4-* 变量，
- * 保证「一处定义、两处引用」，不会出现第二套纸张尺寸。
+ * 约定：
+ * 1. 不覆盖 presetWind3 的任何 theme 键。需要自定义就新增独立命名（ink / rule / paper 等），
+ *    绝不改 text-sm、p-4 这类预设工具类的含义。
+ * 2. 纸张尺寸、内边距只在这里定义，style.scss 不再持有 --a4-* 变量。
+ * 3. shortcut 只提炼「大量复用」或「新建模板一定会用」的样式。单点样式写在组件里：
+ *    组件内复用的用 <style scoped> 里的 --at-apply，只用一次的直写工具类。
  */
 export default defineConfig({
   presets: [presetWind3()],
 
+  // 支持在 <style scoped> 里用 --at-apply 复用工具类
+  transformers: [transformerDirectives()],
+
   theme: {
-    width: { a4: 'var(--a4-width)' },
-    height: { a4: 'var(--a4-height)' },
-    padding: { a4: 'var(--a4-padding)' },
+    // 纸张几何：210×297mm，内边距上下 12mm、左右 18mm
+    width: { a4: '210mm' },
+    height: { a4: '297mm' },
+    // p-* 工具类查的是 theme.spacing
+    spacing: { a4: '12mm 18mm' },
 
     colors: {
-      // classic 模板的黑白灰层级
+      // classic 的黑白灰层级
       ink: {
         DEFAULT: '#111',
         soft: '#333',
         muted: '#555',
         faint: '#777',
         hint: '#888',
+        title: '#666',
+        deep: '#222',
       },
       rule: {
         DEFAULT: '#d4d4d4',
@@ -50,54 +58,41 @@ export default defineConfig({
       name: '0.04em',
       role: '0.06em',
     },
+  },
 
-    /**
-     * 字号统一用 px 固定，不随浏览器默认字号缩放，保证版面高度可预测。
-     *
-     * A 组：旧 Tailwind 档位，原先是 ResumeSheet 里 :deep() 覆盖的 7 条，
-     *       搬进 theme 后纸内纸外同一类名同值，:deep() 可以整块删除。
-     * B 组：classic 专用语义档位。
-     */
-    fontSize: {
-      xs: ['13px', '18px'],
-      sm: ['16px', '23px'],
-      base: ['18px', '26px'],
-      lg: ['20px', '28px'],
-      xl: ['22px', '30px'],
-      '2xl': ['26px', '34px'],
-      '3xl': ['32px', '40px'],
-
-      'profile-name': ['17px', '22px'],
-      'profile-role': ['10.5px', '15px'],
-      contact: ['11px', '16px'],
-      section: ['12px', '16px'],
-      body: ['12px', '21.6px'],
-      entry: ['12px', '18px'],
-      'entry-meta': ['10.5px', '16px'],
-      tag: ['10px', '15px'],
-      avatar: ['20px', '24px'],
+  shortcuts: [
+    // ---------- 纸张 ----------
+    // 一张 A4：尺寸 / 内边距 / 白底 / 裁切 / 打印分页。新模板必用。
+    // 内容溢出直接裁掉，由作者控制内容量。
+    {
+      'a4-sheet':
+        'w-a4 h-a4 p-a4 bg-paper overflow-hidden box-border print:[&:not(:last-child)]:break-after-page',
     },
-  },
+    // default 模板的旧容器需要单页 grid 骨架（标题行 + 正文行），随 default 一起删
+    {
+      'resume-grid-sheet':
+        'w-a4 h-a4 p-a4 bg-paper overflow-hidden box-border grid grid-rows-[auto_minmax(0,1fr)] [align-content:start] gap-0',
+    },
 
-  shortcuts: {
-    // 固定纸张：default 模板的 ResumeSheet 用
-    'a4-sheet': 'w-a4 h-a4 p-a4 bg-paper overflow-hidden box-border',
-    // 流式文档：屏幕是纸张内容区，打印交给原生分页（边距由 @page 提供）
-    'doc-sheet':
-      'w-a4 p-a4 bg-paper box-border shadow-paper print:w-auto print:p-0 print:shadow-none',
-    'section-title':
-      'pb-[5px] border-b border-rule text-section font-bold tracking-title text-ink',
-    'entry-row': 'flex items-baseline justify-between gap-4',
-    'entry-title': 'text-entry font-bold text-ink',
-    'entry-sub': 'ml-2 font-medium text-ink-muted',
-    'entry-meta': 'flex-none text-entry-meta text-ink-faint',
-    'project-tags': 'mt-px text-tag text-ink-hint break-anywhere',
-    'contact-row':
-      'flex items-baseline gap-2 py-[3px] text-contact border-b border-dotted border-rule-dotted',
-    'contact-label': 'flex-none w-12 text-ink-hint',
-    'contact-value': 'min-w-0 text-ink break-anywhere',
-    'profile-meta': 'grid grid-cols-2 gap-x-[22px] content-center',
-    'profile-avatar':
-      'w-[66px] h-[66px] rounded-full object-cover border border-rule grayscale',
-  },
+    // ---------- 版块 ----------
+    [
+      'section-title',
+      'pb-[5px] border-b border-rule text-xs font-bold tracking-title text-gray-900 print:break-after-avoid print:break-inside-avoid',
+    ],
+    ['section-block', 'mt-[22px]'],
+
+    // ---------- 条目 ----------
+    ['section-item-block', 'mt-3'],
+
+    // ---------- 内容 ----------
+    // 项目符号用 before: 伪元素；400+ 条要点复用
+    [
+      'bullet',
+      [
+        'relative pl-3 text-xs text-ink-soft',
+        'before:content-[""] before:absolute before:left-0 before:top-[0.72em]',
+        'before:w-[3px] before:h-[3px] before:bg-ink',
+      ].join(' '),
+    ],
+  ],
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { resumeData } from "@/data";
-import ResumeSheet from "@/components/page/ResumeSheet.vue";
-import resumeImg from "@/mydata/简历照片.jpg";
+import { resumeData } from '@/data'
+import ResumeSheet from '@/components/page/ResumeSheet.vue'
+import resumeImg from '@/mydata/简历照片.jpg'
 </script>
 
 <template>
@@ -11,9 +11,7 @@ import resumeImg from "@/mydata/简历照片.jpg";
       <div class="resume-stack">
         <!-- 头像和个人信息 -->
         <div class="text-center">
-          <div
-            class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-blue-500 mb-3"
-          >
+          <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-blue-500 mb-3">
             <img
               :src="resumeImg"
               alt="个人照片"
@@ -32,108 +30,34 @@ import resumeImg from "@/mydata/简历照片.jpg";
 
         <!-- 基本信息 -->
         <div>
-          <h2
-            class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2"
-          >
+          <h2 class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
             <span class="text-blue-600">—</span>
             基本信息
           </h2>
           <div class="resume-lines text-sm">
             <div class="flex">
               <span class="text-gray-500 w-20">年龄</span>
-              <span class="text-gray-700">{{
-                resumeData.personalInfo.age
-              }}</span>
+              <span class="text-gray-700">{{ resumeData.personalInfo.age }}</span>
             </div>
             <div class="flex">
               <span class="text-gray-500 w-20">工作年限</span>
-              <span class="text-gray-700">{{
-                resumeData.personalInfo.workYears
-              }}</span>
+              <span class="text-gray-700">{{ resumeData.personalInfo.workYears }}</span>
             </div>
             <div class="flex">
               <span class="text-gray-500 w-20">学历</span>
-              <span class="text-gray-700">{{
-                resumeData.personalInfo.education
-              }}</span>
+              <span class="text-gray-700">{{ resumeData.personalInfo.education }}</span>
             </div>
             <div class="flex">
               <span class="text-gray-500 w-20">电话</span>
-              <span class="text-gray-700">{{
-                resumeData.personalInfo.phone
-              }}</span>
+              <span class="text-gray-700">{{ resumeData.personalInfo.phone }}</span>
             </div>
             <div class="flex">
               <span class="text-gray-500 w-20">邮箱</span>
-              <span class="text-gray-700">{{
-                resumeData.personalInfo.email
-              }}</span>
+              <span class="text-gray-700">{{ resumeData.personalInfo.email }}</span>
             </div>
             <div class="flex">
               <span class="text-gray-500 w-20">到岗时间</span>
-              <span class="text-gray-700">{{
-                resumeData.personalInfo.availableDate
-              }}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 专业技能 -->
-        <div>
-          <h2
-            class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2"
-          >
-            <span class="text-blue-600">—</span>
-            专业技能
-          </h2>
-          <div class="resume-fields">
-            <div>
-              <h3 class="text-sm font-medium text-blue-600 mb-2">前端基础</h3>
-              <div class="flex flex-wrap gap-1">
-                <span
-                  v-for="skill in resumeData.personalSkills.frontend"
-                  :key="skill"
-                  class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors"
-                >
-                  {{ skill }}
-                </span>
-              </div>
-            </div>
-            <div>
-              <h3 class="text-sm font-medium text-blue-600 mb-2">框架与库</h3>
-              <div class="flex flex-wrap gap-1">
-                <span
-                  v-for="skill in resumeData.personalSkills.frameworks"
-                  :key="skill"
-                  class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors"
-                >
-                  {{ skill }}
-                </span>
-              </div>
-            </div>
-            <div>
-              <h3 class="text-sm font-medium text-blue-600 mb-2">工程化</h3>
-              <div class="flex flex-wrap gap-1">
-                <span
-                  v-for="skill in resumeData.personalSkills.engineering"
-                  :key="skill"
-                  class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors"
-                >
-                  {{ skill }}
-                </span>
-              </div>
-            </div>
-            <div>
-              <h3 class="text-sm font-medium text-blue-600 mb-2">其他</h3>
-              <div class="flex flex-wrap gap-1">
-                <span
-                  v-for="skill in resumeData.personalSkills.other"
-                  :key="skill"
-                  class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors"
-                >
-                  {{ skill }}
-                </span>
-              </div>
+              <span class="text-gray-700">{{ resumeData.personalInfo.availableDate }}</span>
             </div>
           </div>
         </div>
@@ -143,9 +67,7 @@ import resumeImg from "@/mydata/简历照片.jpg";
       <div class="resume-stack">
         <!-- 教育背景 -->
         <div>
-          <h2
-            class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2"
-          >
+          <h2 class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
             <span class="text-blue-600">—</span>
             教育背景
           </h2>
@@ -178,18 +100,14 @@ import resumeImg from "@/mydata/简历照片.jpg";
 
         <!-- 语言能力 -->
         <div>
-          <h2
-            class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2"
-          >
+          <h2 class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
             <span class="text-blue-600">—</span>
             语言能力
           </h2>
           <div class="resume-fields">
             <div v-for="lang in resumeData.languages" :key="lang.name">
               <div class="flex justify-between items-center mb-1">
-                <span class="text-sm font-medium text-gray-800">{{
-                  lang.name
-                }}</span>
+                <span class="text-sm font-medium text-gray-800">{{ lang.name }}</span>
                 <span class="text-sm text-blue-600">{{ lang.level }}</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-1.5 mb-1">
@@ -205,9 +123,7 @@ import resumeImg from "@/mydata/简历照片.jpg";
 
         <!-- 个人优势 -->
         <div>
-          <h2
-            class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2"
-          >
+          <h2 class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
             <span class="text-blue-600">—</span>
             个人优势
           </h2>
@@ -224,9 +140,7 @@ import resumeImg from "@/mydata/简历照片.jpg";
 
         <!-- 工作经历 -->
         <div>
-          <h2
-            class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2"
-          >
+          <h2 class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
             <span class="text-blue-600">—</span>
             工作经历
           </h2>

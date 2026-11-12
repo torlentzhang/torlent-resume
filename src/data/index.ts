@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/types";
+import type { ResumeData } from '@/types'
 
 /*
  * 数据入口。
@@ -9,23 +9,23 @@ import type { ResumeData } from "@/types";
  * 切换方式：在 .env.local 中设置 VITE_USE_REAL_DATA=true。
  * 若该开关为 true 但真实数据文件缺失（例如他人克隆仓库），自动回退到演示数据。
  */
-import { personalInfo as demoPersonalInfo } from "./personal-info";
-import { personalSkills as demoPersonalSkills } from "./personal-skills";
-import { languages as demoLanguages } from "./languages";
-import { education as demoEducation } from "./education";
-import { advantages as demoAdvantages } from "./advantages";
-import { workExperience as demoWorkExperience } from "./work-experience";
-import { projects as demoProjects } from "./projects";
-import { openSource as demoOpenSource } from "./open-source";
+import { personalInfo as demoPersonalInfo } from './personal-info'
+import { personalSkills as demoPersonalSkills } from './personal-skills'
+import { languages as demoLanguages } from './languages'
+import { education as demoEducation } from './education'
+import { advantages as demoAdvantages } from './advantages'
+import { workExperience as demoWorkExperience } from './work-experience'
+import { projects as demoProjects } from './projects'
+import { portfolio as demoPortfolio } from './portfolio'
 
-import { hasRealData, realData } from "@/mydata";
+import { hasRealData, realData } from '@/mydata'
 
-const useRealData = import.meta.env.VITE_USE_REAL_DATA === "true" && hasRealData;
+const useRealData = import.meta.env.VITE_USE_REAL_DATA === 'true' && hasRealData
 
-if (import.meta.env.VITE_USE_REAL_DATA === "true" && !hasRealData) {
+if (import.meta.env.VITE_USE_REAL_DATA === 'true' && !hasRealData) {
   console.warn(
-    "[data] VITE_USE_REAL_DATA=true 但未检测到 src/mydata/ 下的真实数据，已回退到演示数据。",
-  );
+    '[data] VITE_USE_REAL_DATA=true 但未检测到 src/mydata/ 下的真实数据，已回退到演示数据。',
+  )
 }
 
 const demo: ResumeData = {
@@ -36,8 +36,8 @@ const demo: ResumeData = {
   advantages: demoAdvantages,
   workExperience: demoWorkExperience,
   projects: demoProjects,
-  openSource: demoOpenSource,
-};
+  portfolio: demoPortfolio,
+}
 
 export const resumeData: ResumeData = useRealData
   ? {
@@ -48,6 +48,6 @@ export const resumeData: ResumeData = useRealData
       advantages: realData.advantages!,
       workExperience: realData.workExperience!,
       projects: realData.projects!,
-      openSource: realData.openSource!,
+      portfolio: realData.portfolio!,
     }
-  : demo;
+  : demo
