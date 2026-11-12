@@ -42,37 +42,21 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="sheetRef" class="resume-page bg-white overflow-hidden">
+  <div ref="sheetRef" class="resume-page a4-sheet">
     <slot />
   </div>
 </template>
 
 <style scoped>
-/* 单页固定尺寸：允许内容被裁切，页数恒等于组件数量 */
-.resume-page {
-  width: var(--a4-width);
-  height: var(--a4-height);
-  padding: var(--a4-padding);
-  box-sizing: border-box;
-
-  /* 单页骨架：标题行自动高度，正文占满剩余行 */
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  align-content: start;
-  gap: 0;
-}
-
 /*
- * 字号已统一到 uno.config.ts 的 theme.fontSize（text-xs ~ text-3xl），
- * 纸内纸外同一类名同值，不再需要 :deep() 覆盖。
+ * 尺寸、内边距、单页 grid 骨架、白底与裁切都在 uno.config.ts 的 `a4-sheet` shortcut 里。
+ * 这里只保留两类 UnoCSS 表达不好的东西：
+ *   1. 打印期的 !important 覆盖（要压过页面里其他规则，且含 :last-child 例外）
+ *   2. 开发期溢出红框（动态类切换 + @media screen 限定）
  */
-
-/* 溢出提示：仅屏幕预览可见，不影响打印产出 */
-@media screen {
-  .resume-page.resume-overflow {
-    outline: 2px solid #f53f3f;
-    outline-offset: -2px;
-  }
+.resume-page.resume-overflow {
+  outline: 2px solid #f53f3f;
+  outline-offset: -2px;
 }
 
 /* 打印：固定纸张尺寸，一页一张，禁止被内容撑高 */

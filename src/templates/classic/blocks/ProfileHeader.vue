@@ -7,6 +7,8 @@
  *
  * 左列：头像居中 → 姓名 → 意向岗位（靠底部对齐）
  * 右列：联系方式 3 行 × 2 列栅格
+ *
+ * 所有样式来自 uno shortcuts：profile-* / contact-*，组件内无 style 块。
  */
 import { ref } from 'vue'
 import type { PersonalInfo } from '@/types'
@@ -28,120 +30,34 @@ const metaRows = [
 </script>
 
 <template>
-  <header class="classic-profile">
+  <header class="profile-grid">
     <!-- 左列：头像 + 姓名 + 岗位 -->
-    <div class="classic-profile__identity">
+    <div class="profile-identity">
       <img
         v-if="info.avatar && !avatarBroken"
         :src="info.avatar"
         :alt="`${info.name}的头像`"
-        class="h-[66px] w-[66px] rounded-full border border-gray-300 object-cover grayscale"
+        class="profile-avatar"
         @error="avatarBroken = true"
       />
-      <div
-        v-else
-        class="flex h-[66px] w-[66px] items-center justify-center rounded-full border border-gray-300 bg-gray-100 text-gray-500"
-      >
+      <div v-else class="profile-avatar-fallback">
         {{ info.name.slice(0, 1) }}
       </div>
 
-      <h1 class="classic-profile__name">
+      <h1 class="profile-name">
         {{ info.name }}
       </h1>
-      <p class="classic-profile__title">
+      <p class="profile-role">
         {{ info.title }}
       </p>
     </div>
 
     <!-- 右列：联系方式栅格 -->
-    <dl class="classic-profile__meta">
-      <div v-for="row in metaRows" :key="row.label" class="classic-contact-row">
-        <dt class="classic-contact-label">{{ row.label }}</dt>
-        <dd class="classic-contact-value">{{ row.value }}</dd>
+    <dl class="profile-meta">
+      <div v-for="row in metaRows" :key="row.label" class="contact-row">
+        <dt class="contact-label">{{ row.label }}</dt>
+        <dd class="contact-value">{{ row.value }}</dd>
       </div>
     </dl>
   </header>
 </template>
-
-<style scoped>
-/*
- * 左右两列同属一个 grid 行，默认 align-items: stretch，
- * 两列高度恒等，底边由 .classic-profile 的 padding-bottom 统一控制。
- */
-.classic-profile {
-  display: grid;
-  grid-template-columns: 112px minmax(0, 1fr);
-  gap: 24px;
-  align-items: stretch;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #111;
-}
-
-/* 左列：头像顶部居中，姓名与岗位贴底，撑满整列高度 */
-.classic-profile__identity {
-  display: grid;
-  grid-template-rows: auto 1fr auto auto;
-  justify-items: center;
-  text-align: center;
-}
-
-.classic-profile__name {
-  grid-row: 3;
-  font-size: 17px;
-  line-height: 22px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #111;
-}
-
-.classic-profile__title {
-  grid-row: 4;
-  margin-top: 2px;
-  font-size: 10.5px;
-  line-height: 15px;
-  letter-spacing: 0.06em;
-  color: #666;
-}
-
-/*
- * 右列：3 行 × 2 列内容栅格。
- * 行高必须是 auto（不能是 1fr）：行被拉高后，文字仍贴在行顶部，
- * 而下边框在行底部，就会呈现「文字不在线上」的错位。
- * 高度由内容决定，整列用 align-content: center 在左列的高度里居中。
- */
-.classic-profile__meta {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: auto;
-  align-content: center;
-  column-gap: 22px;
-}
-
-.classic-contact-row {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  padding: 3px 0;
-  border-bottom: 1px dotted #e0e0e0;
-  font-size: 11px;
-  line-height: 16px;
-}
-
-.classic-contact-label {
-  flex: none;
-  width: 48px;
-  color: #888;
-}
-
-.classic-contact-value {
-  min-width: 0;
-  color: #222;
-  overflow-wrap: anywhere;
-}
-
-@media print {
-  .classic-profile {
-    break-inside: avoid;
-  }
-}
-</style>
