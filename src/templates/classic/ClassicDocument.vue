@@ -58,7 +58,7 @@ const { personalInfo, advantages, workExperience, projects, openSource, educatio
       </section>
     </A4>
 
-    <!-- 第 2 页：项目经历 -->
+    <!-- 第 2 页：项目经历 + 教育背景（含语言能力） -->
     <A4>
       <section v-if="projects.length">
         <SectionTitle text="项目经历" />
@@ -86,9 +86,36 @@ const { personalInfo, advantages, workExperience, projects, openSource, educatio
           </ul>
         </div>
       </section>
+
+      <section v-if="education.length" class="section-block">
+        <SectionTitle text="教育背景" />
+        <div
+          v-for="(item, index) in education"
+          :key="index"
+          :class="['entry-block', index === 0 ? 'mt-2' : 'mt-3']"
+        >
+          <EntryHead
+            :title="item.school"
+            :subtitle="item.major"
+            :period="item.period"
+            :location="item.location"
+          />
+          <ul v-if="item.highlights.length" class="mt-1 space-y-1">
+            <Bullet v-for="(text, textIndex) in item.highlights" :key="textIndex" :text="text" />
+          </ul>
+        </div>
+        <p
+          v-for="(item, index) in languages"
+          :key="index"
+          class="mt-1 text-xs leading-relaxed text-gray-700"
+        >
+          <span class="font-bold text-gray-900">{{ item.name }}（{{ item.level }}）</span>
+          <span v-if="item.description">：{{ item.description }}</span>
+        </p>
+      </section>
     </A4>
 
-    <!-- 第 3 页：开源项目 + 教育背景 + 语言能力 -->
+    <!-- 第 3 页：开源项目 -->
     <A4>
       <section v-if="openSource.length">
         <SectionTitle text="开源项目" />
@@ -116,36 +143,6 @@ const { personalInfo, advantages, workExperience, projects, openSource, educatio
         </div>
       </section>
 
-      <section v-if="education.length" class="section-block">
-        <SectionTitle text="教育背景" />
-        <div
-          v-for="(item, index) in education"
-          :key="index"
-          :class="['entry-block', index === 0 ? 'mt-2' : 'mt-3']"
-        >
-          <EntryHead
-            :title="item.school"
-            :subtitle="item.major"
-            :period="item.period"
-            :location="item.location"
-          />
-          <ul v-if="item.highlights.length" class="mt-1 space-y-1">
-            <Bullet v-for="(text, textIndex) in item.highlights" :key="textIndex" :text="text" />
-          </ul>
-        </div>
-      </section>
-
-      <section v-if="languages.length" class="section-block">
-        <SectionTitle text="语言能力" />
-        <p
-          v-for="(item, index) in languages"
-          :key="index"
-          class="mt-1 text-xs leading-relaxed text-gray-700"
-        >
-          <span class="font-bold text-gray-900">{{ item.name }}（{{ item.level }}）</span>
-          <span v-if="item.description">：{{ item.description }}</span>
-        </p>
-      </section>
     </A4>
   </div>
 </template>
