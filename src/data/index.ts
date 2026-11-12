@@ -16,7 +16,7 @@ import { education as demoEducation } from "./education";
 import { advantages as demoAdvantages } from "./advantages";
 import { workExperience as demoWorkExperience } from "./work-experience";
 import { projects as demoProjects } from "./projects";
-import { openSource as demoOpenSource } from "./open-source";
+import { portfolio as demoPortfolio } from "./portfolio";
 
 import { hasRealData, realData } from "@/mydata";
 
@@ -36,7 +36,7 @@ const demo: ResumeData = {
   advantages: demoAdvantages,
   workExperience: demoWorkExperience,
   projects: demoProjects,
-  openSource: demoOpenSource,
+  portfolio: demoPortfolio,
 };
 
 export const resumeData: ResumeData = useRealData
@@ -48,6 +48,6 @@ export const resumeData: ResumeData = useRealData
       advantages: realData.advantages!,
       workExperience: realData.workExperience!,
       projects: realData.projects!,
-      openSource: realData.openSource!,
+      portfolio: realData.portfolio!,
     }
   : demo;

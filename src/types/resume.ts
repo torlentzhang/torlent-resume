@@ -31,29 +31,25 @@ export interface Project {
   achievements: string[];
 }
 
-/** 个人项目（暂未接入简历，见 src/mydata/personal-projects.ts） */
-export interface PersonalProject {
+/**
+ * 作品集项目。
+ * 开源仓库与私有项目共用一种结构：有仓库地址就填 url，私有项目留空。
+ * 多端、架构分层等分组信息一律压平进 highlights，用「前缀：说明」区分。
+ */
+export interface PortfolioProject {
   name: string;
+  /** 起止时间；未上线可留空 */
   period?: string;
-  status: string;
-  tags: string[];
+  /** 状态标记，如「开发中」；已上线可留空 */
+  status?: string;
+  /** 一句话定位，如「Vue 拖拽式表单引擎」 */
+  meta?: string;
+  /** 仓库地址；私有项目留空 */
+  url?: string;
   description: string;
-  accessModel: string[];
-  terminals: { name: string; items: string[] }[];
-  architecture: { layer: string; detail: string }[];
+  tags: string[];
   techStack: string[];
   highlights: string[];
-}
-
-export interface OpenSourceProject {
-  name: string;
-  githubUrl: string;
-  period: string;
-  meta: string;
-  description: string;
-  features: string[];
-  highlights: string[];
-  contributions: string[];
 }
 
 export interface PersonalInfo {
@@ -83,5 +79,5 @@ export interface ResumeData {
   advantages: string[];
   workExperience: WorkExperience[];
   projects: Project[];
-  openSource: OpenSourceProject[];
+  portfolio: PortfolioProject[];
 }

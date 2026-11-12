@@ -17,7 +17,7 @@ import EntryHead from './blocks/EntryHead.vue'
 import ProjectHead from './blocks/ProjectHead.vue'
 import ProfileHeader from './blocks/ProfileHeader.vue'
 
-const { personalInfo, advantages, workExperience, projects, openSource, education, languages } =
+const { personalInfo, advantages, workExperience, projects, portfolio, education, languages } =
   resumeData
 </script>
 
@@ -116,27 +116,26 @@ const { personalInfo, advantages, workExperience, projects, openSource, educatio
 
     </A4>
 
-    <!-- 第 3 页：开源项目 -->
+    <!-- 第 3 页：作品集 -->
     <A4>
-      <section v-if="openSource.length">
-        <SectionTitle text="开源项目" />
+      <section v-if="portfolio.length">
+        <SectionTitle text="作品集" />
         <div
-          v-for="(project, index) in openSource"
+          v-for="(project, index) in portfolio"
           :key="index"
           :class="['entry-block', index === 0 ? 'mt-2' : 'mt-3']"
         >
-          <ProjectHead :name="project.name" :href="project.githubUrl" :period="project.period" />
+          <ProjectHead
+            :name="project.name"
+            :href="project.url"
+            :period="project.period || project.status"
+            :tags="project.tags"
+            :tech-stack="project.techStack"
+          />
           <p v-if="project.description" class="bullet mt-1">{{ project.description }}</p>
-          <ul
-            v-if="project.features.length || project.highlights.length || project.contributions.length"
-            class="mt-1 space-y-1"
-          >
+          <ul v-if="project.highlights.length" class="mt-1 space-y-1">
             <Bullet
-              v-for="(item, itemIndex) in [
-                ...project.features,
-                ...project.highlights,
-                ...project.contributions,
-              ]"
+              v-for="(item, itemIndex) in project.highlights"
               :key="itemIndex"
               :text="item"
             />
