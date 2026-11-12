@@ -19,9 +19,10 @@ export default defineConfigWithVueTs(
 
   globalIgnores(['**/dist/**', '**/dist-ssr/**']),
 
-  // vueTsConfigs.recommended 里的 eslint-recommended 只是「关闭与 TS 冲突的核心规则」，
-  // 并不会启用 eslint:recommended。没有这一行，no-debugger / no-unused-vars 等基础规则
-  // 全部失效（实测 debugger 不会被报错）。
+  // 补齐 ESLint 核心的 recommended 规则。
+  // vueTsConfigs.recommended 里的 eslint-recommended 只负责「关闭与 TS 冲突的核心规则」，
+  // 它本身不启用任何规则。typescript-eslint 自带的规则能覆盖 no-unused-vars / no-var 等，
+  // 但核心的 no-debugger 没有替代品 —— 实测去掉这一行后 debugger 不会被报错。
   js.configs.recommended,
 
   ...pluginVue.configs['flat/recommended'],
