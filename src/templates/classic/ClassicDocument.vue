@@ -23,7 +23,7 @@ const { personalInfo, advantages, workExperience, projects, openSource, educatio
 
 <template>
   <div class="flex flex-col items-center gap-12 print:gap-0">
-    <!-- 第 1 页：个人信息 + 个人优势 + 工作经历 -->
+    <!-- 第 1 页：个人信息 + 个人优势 + 工作经历 + 教育背景（含语言能力） -->
     <A4>
       <ProfileHeader :info="personalInfo" />
 
@@ -50,36 +50,6 @@ const { personalInfo, advantages, workExperience, projects, openSource, educatio
           <ul v-if="work.responsibilities.length || work.achievements.length" class="mt-1 space-y-1">
             <Bullet
               v-for="(item, itemIndex) in [...work.responsibilities, ...work.achievements]"
-              :key="itemIndex"
-              :text="item"
-            />
-          </ul>
-        </div>
-      </section>
-    </A4>
-
-    <!-- 第 2 页：项目经历 + 教育背景（含语言能力） -->
-    <A4>
-      <section v-if="projects.length">
-        <SectionTitle text="项目经历" />
-        <div
-          v-for="(project, index) in projects"
-          :key="index"
-          :class="['entry-block', index === 0 ? 'mt-2' : 'mt-3']"
-        >
-          <ProjectHead
-            :name="project.name"
-            :period="project.period"
-            :tags="project.tags"
-            :tech-stack="project.techStack"
-          />
-          <p v-if="project.description" class="bullet mt-1">{{ project.description }}</p>
-          <ul
-            v-if="project.responsibilities.length || project.achievements.length"
-            class="mt-1 space-y-1"
-          >
-            <Bullet
-              v-for="(item, itemIndex) in [...project.responsibilities, ...project.achievements]"
               :key="itemIndex"
               :text="item"
             />
@@ -113,6 +83,37 @@ const { personalInfo, advantages, workExperience, projects, openSource, educatio
           <span v-if="item.description">：{{ item.description }}</span>
         </p>
       </section>
+    </A4>
+
+    <!-- 第 2 页：项目经历 -->
+    <A4>
+      <section v-if="projects.length">
+        <SectionTitle text="项目经历" />
+        <div
+          v-for="(project, index) in projects"
+          :key="index"
+          :class="['entry-block', index === 0 ? 'mt-2' : 'mt-3']"
+        >
+          <ProjectHead
+            :name="project.name"
+            :period="project.period"
+            :tags="project.tags"
+            :tech-stack="project.techStack"
+          />
+          <p v-if="project.description" class="bullet mt-1">{{ project.description }}</p>
+          <ul
+            v-if="project.responsibilities.length || project.achievements.length"
+            class="mt-1 space-y-1"
+          >
+            <Bullet
+              v-for="(item, itemIndex) in [...project.responsibilities, ...project.achievements]"
+              :key="itemIndex"
+              :text="item"
+            />
+          </ul>
+        </div>
+      </section>
+
     </A4>
 
     <!-- 第 3 页：开源项目 -->
