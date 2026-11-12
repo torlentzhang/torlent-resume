@@ -42,17 +42,17 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="sheetRef" class="resume-page a4-sheet">
+  <div ref="sheetRef" class="resume-page resume-grid-sheet">
     <slot />
   </div>
 </template>
 
 <style scoped>
 /*
- * 尺寸、内边距、单页 grid 骨架、白底与裁切都在 uno.config.ts 的 `a4-sheet` shortcut 里。
- * 这里只保留两类 UnoCSS 表达不好的东西：
- *   1. 打印期的 !important 覆盖（要压过页面里其他规则，且含 :last-child 例外）
- *   2. 开发期溢出红框（动态类切换 + @media screen 限定）
+ * 尺寸、内边距、单页 grid 骨架、白底与裁切在 uno.config.ts 的 `resume-grid-sheet` shortcut 里。
+ * 这里只保留两类 UnoCSS 表达不好的东西：打印期的 !important 覆盖（含 :last-child 例外）、
+ * 以及开发期溢出红框（动态类切换 + @media screen 限定）。
+ * 纸张尺寸是字面量：style.scss 的 :root 已废弃，唯一来源是 uno.config.ts。
  */
 .resume-page.resume-overflow {
   outline: 2px solid #f53f3f;
@@ -62,9 +62,9 @@ onBeforeUnmount(() => {
 /* 打印：固定纸张尺寸，一页一张，禁止被内容撑高 */
 @media print {
   .resume-page {
-    width: var(--a4-width) !important;
-    height: var(--a4-height) !important;
-    padding: var(--a4-padding) !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    padding: 12mm 18mm !important;
     box-sizing: border-box !important;
     min-height: 0 !important;
     overflow: hidden !important;
